@@ -4,7 +4,7 @@ import { Contact } from "../models/Contact";
 import { ScalarField, VectorField } from "./ContactFields";
 import { useStore } from "./stores/contacts";
 import { todayISO } from "./utils/today";
-import Select from "./Select2";
+import { SelectTag } from "./Select";
 
 function field(key: string, placeholder?: string, multiline = false) {
   return {
@@ -112,15 +112,16 @@ function ContactItem({ contact }: ContactProps) {
             />
           ))}
           {CONTACT_FIELDS.select.map((args) => (
-            <Select></Select>
+            <SelectTag
+              key={args.key}
+              contact={displayContact}
+              label={args.key}
+              editing={!!editing}
+              setPending={setEditing}
+              save={saveChanges}
+              value={displayContact[args.key] as Array<string>}
+            />
           ))}
-
-          {/* <input type="text" name="city" list="cityname">
-            <datalist id="cityname">
-              <option value="Boston" />
-              <option value="Cambridge" />
-            </datalist>
-          </input> */}
         </div>
       </div>
       {editing ? (
