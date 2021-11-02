@@ -6,6 +6,7 @@
     "@trpc/server": "^9.5.0",
     "deta": "^1.0.0",
     "express": "^4.17.1",
+    "react-select": "^5.2.0",
     "zod": "^3.8.1"
   },
   "devDependencies": {

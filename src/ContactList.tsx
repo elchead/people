@@ -4,6 +4,7 @@ import { Contact } from "../models/Contact";
 import { ScalarField, VectorField } from "./ContactFields";
 import { useStore } from "./stores/contacts";
 import { todayISO } from "./utils/today";
+import Select from "./Select2";
 
 function field(key: string, placeholder?: string, multiline = false) {
   return {
@@ -17,12 +18,16 @@ const CONTACT_FIELDS = {
   scalar: [
     field("name"),
     field("place"),
+    field("where"),
     field("work"),
+    field("family"),
+    field("food"),
     field("twttr", "@username"),
     field("last"),
     field("notes", "notes", true),
   ],
-  vector: [field("tel"), field("email"), field("mtg", "meeting", true)],
+  vector: [field("mtg", "meeting", true)],
+  select: [field("tag")],
 };
 
 interface ContactProps {
@@ -64,7 +69,7 @@ function ContactItem({ contact }: ContactProps) {
       onKeyUp={(evt) => {
         if (!ref.current || evt.target !== ref.current) return;
 
-        if (evt.key === "Enter" && !editing) {
+        if (evt.key === "Return" && !editing) {
           saveChanges();
         } else if (evt.key === "Escape" && editing) {
           toggleEditing();
@@ -106,6 +111,16 @@ function ContactItem({ contact }: ContactProps) {
               setPending={setEditing}
             />
           ))}
+          {CONTACT_FIELDS.select.map((args) => (
+            <Select></Select>
+          ))}
+
+          {/* <input type="text" name="city" list="cityname">
+            <datalist id="cityname">
+              <option value="Boston" />
+              <option value="Cambridge" />
+            </datalist>
+          </input> */}
         </div>
       </div>
       {editing ? (
