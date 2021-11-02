@@ -65,12 +65,16 @@ export function SelectTag({
       {editing ? (
         <Select
           changeHandler={handleChange}
-          defaultValue={value.map((v) => {
-            return {
-              label: v,
-              value: v,
-            };
-          })}
+          defaultValue={
+            value
+              ? value.map((v) => {
+                  return {
+                    label: v,
+                    value: v,
+                  };
+                })
+              : undefined
+          }
         />
       ) : (
         value.map((v) => <div key={v}>{v + ","}</div>)
@@ -81,7 +85,7 @@ export function SelectTag({
 
 export default class Select extends Component<{
   changeHandler: (tags: Array<string>) => void;
-  defaultValue: Array<Option>;
+  defaultValue: Array<Option> | undefined;
 }> {
   state: State = {
     isLoading: false,
