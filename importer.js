@@ -1,4 +1,4 @@
-import { csvToObj } from "csv-to-js-parser";
+csvToObj = require("csv-to-js-parser").csvToObj;
 
 const DataInterface = {
   Name: { type: "string", group: 1 },
@@ -12,6 +12,6 @@ const DataInterface = {
   //   Likes: { type: "string" },
 };
 
-export default parseCsv = (data) => csvToObj(data, ",");
+const parseCsv = (data) => csvToObj(data, ",");
 
-// module.exports = parseCsv;
+module.exports = parseCsv;
