@@ -11,6 +11,7 @@
 # production
 /build
 /micro
+data
 
 # misc
 .DS_Store
