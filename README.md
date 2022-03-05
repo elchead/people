@@ -1,6 +1,6 @@
 # people - A personal CRM
 
-A port of the excellent [mira](https://github.com/thesephist/mira) from its original python + custom frontend to a stack in typescript + react with the database hosted on [Deta Space](https://deta.space/) (and/or Deta Cloud).
+A fork of the excellent [contactful](https://github.com/noahm/contactful) with the database hosted on [Deta Space](https://deta.space/) (and/or Deta Cloud).
 Its a progressive web app (PWA), such that it also has offline support.
 
 ## Development
