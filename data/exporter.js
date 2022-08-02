@@ -1,16 +1,17 @@
 const fs = require("fs");
-const ExportFile = "/Users/adria/Programming/misou/data/people.json";
+const ExportFile = "./data/people.json"; //"/Users/adria/Programming/misou/data/people.json";
 const backupFolder = "/Users/adria/Google Drive/04_Archives/Backup/people";
 // deta prep
 const { Deta } = require("deta");
 require("dotenv").config({
-  path: "./.env.local",
+  path: "./.env",
 });
 const deta = Deta(process.env.REACT_APP_KEY);
 const db = deta.Base("people");
 
 const backupData = async () => {
   const contacts = await db.fetch();
+
   storeData(contacts, `${backupFolder}/backup-${getDateString()}.json`);
   storeData(contacts, ExportFile);
 };
@@ -28,3 +29,5 @@ function storeData(data, path) {
 function getDateString() {
   return new Date().toISOString().split("T")[0];
 }
+
+console.log("Backup complete to", ExportFile);
